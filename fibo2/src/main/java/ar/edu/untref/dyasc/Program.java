@@ -20,6 +20,7 @@ public class Program {
                 System.out.println("Opciones no validas.");
             }
         }
+        System.out.println();
     }
     
     private static int[] fibonacci(int numeroIngresado){
