@@ -7,7 +7,7 @@ public class Program {
         if(args.length==1){
             orientacionDefault(Integer.parseInt(args[0]));
         }else{
-            String orientacion = args[0];
+            String orientacion = args[0].split("=")[1];
             int numeroIngresado = Integer.parseInt(args[1]);
             
             if(orientacion=="vd"){
