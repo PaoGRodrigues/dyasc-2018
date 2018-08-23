@@ -10,11 +10,11 @@ public class Program {
             String orientacion = args[0].split("=")[1];
             int numeroIngresado = Integer.parseInt(args[1]);
             
-            if(orientacion=="vd"){
+            if(orientacion.equals("vd")){
                 verticalDirecta(numeroIngresado);
-            }else if(orientacion=="hi"){
+            }else if(orientacion.equals("hi")){
                 horizontalInversa(numeroIngresado);
-            }else if(orientacion=="vi"){
+            }else if(orientacion.equals("vi")){
                 verticalInversa(numeroIngresado);
             }else{
                 System.out.println("Opciones no validas.");
@@ -22,12 +22,12 @@ public class Program {
         }
     }
     
-    public static int[] fibonacci(int numeroIngresado){
+    private static int[] fibonacci(int numeroIngresado){
         int[] serie = new int[numeroIngresado];
         serie[0]=0;
         serie[1]=1;
         
-        for(int i=2; i <=numeroIngresado; i++){
+        for(int i=2; i <=numeroIngresado-1; i++){
             serie[i] = serie[i-1] + serie[i-2];
         }
         return serie;
@@ -52,7 +52,7 @@ public class Program {
     public static void horizontalInversa(int numeroIngresado){
         int[] serie = fibonacci(numeroIngresado);
         System.out.print("fibo<" + numeroIngresado + ">: ");
-        for(int i=serie.length; i>=0; i--){
+        for(int i=serie.length-1; i>=0; i--){
             System.out.print(serie[i] + " ");
         }
     }
@@ -60,7 +60,7 @@ public class Program {
     public static void verticalInversa(int numeroIngresado){
         int[] serie = fibonacci(numeroIngresado);
         System.out.println("fibo<" + numeroIngresado + ">: ");
-        for (int i=serie.length; i>=0; i--) {
+        for (int i=serie.length-1; i>=0; i--) {
             System.out.println(serie[i] + " ");
         }
     }
