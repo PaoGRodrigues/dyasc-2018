@@ -7,15 +7,15 @@ public class Program {
         if(args.length==1){
             orientacionDefault(Integer.parseInt(args[0]));
         }else{
-            String orientacion = args[3];
-            String direccion = args[4];
+            String orientacion = args[0];
+            int numeroIngresado = Integer.parseInt(args[1]);
             
-            if(orientacion=="v" && direccion=="d"){
-                verticalDirecta(Integer.parseInt(args[6]));
-            }else if(orientacion=="h" && direccion=="i"){
-                horizontalInversa(Integer.parseInt(args[6]));
-            }else if(orientacion=="v" && direccion=="i"){
-                verticalInversa(Integer.parseInt(args[6]));
+            if(orientacion=="vd"){
+                verticalDirecta(numeroIngresado);
+            }else if(orientacion=="hi"){
+                horizontalInversa(numeroIngresado);
+            }else if(orientacion=="vi"){
+                verticalInversa(numeroIngresado);
             }else{
                 System.out.println("Opciones no validas.");
             }
