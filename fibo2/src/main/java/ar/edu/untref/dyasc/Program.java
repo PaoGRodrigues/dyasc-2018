@@ -6,7 +6,7 @@ public class Program {
 
         if(args.length==1){
             
-            orientacion_default(Integer.parseInt(args[0]));
+            orientacionDefault(Integer.parseInt(args[0]));
         }else{
             String orientacion = args[3];
             String direccion = args[4];
@@ -25,7 +25,7 @@ public class Program {
         
     }
     
-    public static void orientacion_default(int numeroIngresado){
+    public static void orientacionDefault(int numeroIngresado){
         int numero1 = 0;
         int numero2 = 1;
 
@@ -36,5 +36,20 @@ public class Program {
             numero1 = numero2 - numero1;
         }
         System.out.println();
+    }
+    
+    public static void verticalDirecta(int numeroIngresado){
+        int numero1 = 0;
+        int numero2 = 1;
+
+        System.out.println("fibo<" + numeroIngresado + ">: ");
+        System.out.println(numero1);
+        for (int i = 2; i <= numeroIngresado; i++) {
+            System.out.println(numero2 + " ");
+            numero2 = numero1 + numero2;
+            numero1 = numero2 - numero1;
+        }
+        System.out.println();
+        
     }
 }
