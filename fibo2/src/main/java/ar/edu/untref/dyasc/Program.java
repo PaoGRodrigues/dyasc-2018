@@ -15,7 +15,7 @@ public class Program {
             }else if(orientacion=="h" && direccion=="i"){
                 horizontalInversa(Integer.parseInt(args[6]));
             }else if(orientacion=="v" && direccion=="i"){
-                
+                verticalInversa(Integer.parseInt(args[6]));
             }else{
                 System.out.println("Opciones no validas.");
             }
@@ -54,6 +54,14 @@ public class Program {
         System.out.print("fibo<" + numeroIngresado + ">: ");
         for(int i=serie.length; i>=0; i--){
             System.out.print(serie[i] + " ");
+        }
+    }
+    
+    public static void verticalInversa(int numeroIngresado){
+        int[] serie = fibonacci(numeroIngresado);
+        System.out.println("fibo<" + numeroIngresado + ">: ");
+        for (int i=serie.length; i>=0; i--) {
+            System.out.println(serie[i] + " ");
         }
     }
 }
