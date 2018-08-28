@@ -5,8 +5,14 @@ public class Main {
     public static void main(String[] args) {
 
         Interpreter interpreter = new Interpreter(args);
+        interpreter.parseArgs();
         
-        FiboCalculator fibo = new FiboCalculator();
+        FiboCalculator fibo = new FiboCalculator(Integer.parseInt(interpreter.getParameter("number")));
+        
+        Printer printer = new Printer(fibo, interpreter);
+        printer.runCommand(interpreter.getParameter("-o"));
+        
+        
     }
 
 }

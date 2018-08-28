@@ -25,7 +25,7 @@ public class Interpreter {
         this.optionMap.put("number", this.arguments[this.arguments.length-1]);
     }
     
-    public void getParameter(String param){
-        this.optionMap.get(param);
+    public String getParameter(String param){
+        return this.optionMap.get(param);
     }
 }
