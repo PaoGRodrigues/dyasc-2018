@@ -9,9 +9,8 @@ public class Main {
         
         FiboCalculator fibo = new FiboCalculator(Integer.parseInt(interpreter.getParameter("number")));
         
-        Printer printer = new Printer(fibo);
-        printer.runCommand(interpreter.getParameter("-o"));
-        
+        CommandRunner runner = new CommandRunner(fibo, interpreter);
+        runner.run();
         
     }
 
