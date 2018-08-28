@@ -6,10 +6,11 @@ import java.util.Map;
 public class Printer {
 
     private Map<String, Runnable> options;
+    private FiboCalculator fibo;
     private int[] serie;
     
-    public Printer(FiboCalculator fibo, Interpreter interpreter){
-        System.out.print("fibo<" + fibo.getNumber() + ">: ");
+    public Printer(FiboCalculator fibo){
+        this.fibo = fibo;
         this.options = new HashMap<String,Runnable>();
         completeOptions();
         this.serie = fibo.getSerie();
@@ -25,9 +26,11 @@ public class Printer {
         for(int i=0; i<=this.serie.length-1; i++){
             System.out.print(this.serie[i] + " ");
         }
+        System.out.println();
     }
     
     private void verticalDirecta(){
+        System.out.println();
         for (int i=0; i<=this.serie.length-1; i++) {
             System.out.println(this.serie[i] + " ");
         }
@@ -37,18 +40,26 @@ public class Printer {
         for(int i=this.serie.length-1; i>=0; i--){
             System.out.print(this.serie[i] + " ");
         }
+        System.out.println();
     }
     
     private void verticalInversa(){
+        System.out.println();
         for (int i=this.serie.length-1; i>=0; i--) {
             System.out.println(this.serie[i] + " ");
         }
     }
     
     public void runCommand(String option){
-        if(this.options.containsKey(option)){
-            this.options.get(option).run();
+        if(option!=null){
+            if(this.options.containsKey(option)){
+                System.out.print("fibo<" + this.fibo.getNumber() + ">: ");
+                this.options.get(option).run();
+            }else{
+                System.out.println("Opciones no válidas.");
+            }
         }else{
+            System.out.print("fibo<" + this.fibo.getNumber() + ">: ");
             this.orientacionDefault();
         }
     }
