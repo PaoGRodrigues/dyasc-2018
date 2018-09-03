@@ -4,7 +4,7 @@ public class PlusProcessor {
 
     public int plusSerie(int[] serie){
         int result = 0;
-        for(int i=0; i<serie.length-1; i++){
+        for(int i=0; i<serie.length; i++){
             result+=serie[i];
         }
         return result;
