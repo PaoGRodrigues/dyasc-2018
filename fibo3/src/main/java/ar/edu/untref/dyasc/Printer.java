@@ -12,11 +12,11 @@ public class Printer {
     private int[] serie;
     private PrintStream outputFile=null;
     
-    public Printer(FiboCalculator fibo) throws FileNotFoundException{
+    public Printer(FiboCalculator fibo, int[] serie){
         this.fibo = fibo;
         this.options = new HashMap<String,Runnable>();
         completeKeys();
-        this.serie = fibo.getSerie();
+        this.serie = serie;
     }
     
     /*Completes the keys only (They are known).*/
@@ -24,6 +24,7 @@ public class Printer {
         this.options.put("vd", null);
         this.options.put("hi", null);
         this.options.put("vi", null);
+        this.options.put("hd", null);
     }
     
     /*Completes the options' value with the output on them.*/
@@ -31,6 +32,7 @@ public class Printer {
         this.options.put("vd", ()->this.verticalDirecta(output));
         this.options.put("hi", ()->this.horizontalInversa(output));
         this.options.put("vi", ()->this.verticalInversa(output));
+        this.options.put("hd", ()->this.orientacionDefault(output));
     }
     
     private void orientacionDefault(PrintStream output){

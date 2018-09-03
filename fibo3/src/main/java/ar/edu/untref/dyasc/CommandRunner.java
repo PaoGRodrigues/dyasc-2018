@@ -13,7 +13,18 @@ public class CommandRunner {
     }
     
     public void run() throws FileNotFoundException{
-        Printer printer = new Printer(this.fibo);
+        
+        int[] serie;
+        if(this.interpreter.getParameter("-m").equals("s")){
+            PlusProcessor plusProc = new PlusProcessor();
+            serie = new int[1];
+            serie[0] = plusProc.plusSerie(this.fibo.getSerie());
+        }else{
+            serie = this.fibo.getSerie();
+        }
+        
+        Printer printer = new Printer(this.fibo,serie);
         printer.runCommand(this.interpreter.getParameter("-o"), this.interpreter.getParameter("-f"));
+        
     }
 }
