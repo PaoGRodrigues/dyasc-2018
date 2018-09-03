@@ -1,8 +1,10 @@
 package ar.edu.untref.dyasc;
 
+import java.io.FileNotFoundException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         Interpreter interpreter = new Interpreter(args);
         interpreter.parseArgs();
@@ -11,7 +13,6 @@ public class Main {
         
         CommandRunner runner = new CommandRunner(fibo, interpreter);
         runner.run();
-        
     }
 
 }
