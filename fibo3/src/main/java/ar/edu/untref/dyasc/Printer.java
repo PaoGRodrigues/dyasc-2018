@@ -86,6 +86,8 @@ public class Printer {
                 System.out.println("Opciones no válidas.");
             }
         }else{
+            placePrinter(file);
+            completeOptions(this.outputFile);
             this.outputFile.print("fibo<" + this.fibo.getNumber() + ">: ");
             this.orientacionDefault(this.outputFile);
         }
