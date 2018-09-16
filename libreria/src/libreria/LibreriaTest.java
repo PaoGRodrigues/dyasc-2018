@@ -9,6 +9,15 @@ public class LibreriaTest {
         
         Libreria libreria = new Libreria();
         
-        libreria.agregarRegistroCliente("Pedro", "Los corrales 225");
+        CuentaCorriente cuenta = new CuentaCorriente(3355);
+        Cliente unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
+        libreria.agregarRegistroCliente(unCliente);
+    }
+    
+    @Test
+    public void agregarCuentaCorrienteACliente(){
+        //Asumo que no todos los clientes tienen cuenta corriente
+        
+        
     }
 }
