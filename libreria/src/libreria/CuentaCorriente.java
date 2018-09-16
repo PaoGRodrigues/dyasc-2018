@@ -8,11 +8,11 @@ import java.util.Map;
 public class CuentaCorriente {
 
     private int numeroDeCuenta;
-    private Map<String,Map<Producto,Integer>> consumos;
+    private Map<String,Map<Producto,Double>> consumos;
     
     public CuentaCorriente(int numeroDeCuenta){
         this.numeroDeCuenta = numeroDeCuenta;
-        this.consumos = new HashMap<String, Map<Producto,Integer>>();
+        this.consumos = new HashMap<String, Map<Producto,Double>>();
     }
 
     public int getNumeroDeCuenta() {
@@ -24,26 +24,26 @@ public class CuentaCorriente {
     }
 
     public void agregarNuevoMes(String mes){
-        Map<Producto,Integer> nuevoMes = new HashMap<Producto, Integer>();
+        Map<Producto,Double> nuevoMes = new HashMap<Producto, Double>();
         this.consumos.put(mes, nuevoMes);
     }
     
-    public void agregarCompra(String mes,Producto unProducto, int precio) {
+    public void agregarCompra(String mes,Producto unProducto, double precio) {
         if(!this.consumos.containsKey(mes)){
             this.agregarNuevoMes(mes);
         }
         this.consumos.get(mes).put(unProducto, precio);
     }
     
-    public Map<Producto,Integer> obtenerConsumos(String mes){
+    public Map<Producto,Double> obtenerConsumos(String mes){
         return this.consumos.get(mes);
     }
     
-    public int obtenerTotalMes(String mes){
-        Map<Producto,Integer> productos = this.obtenerConsumos(mes);
-        int total = 0;
+    public double obtenerTotalMes(String mes){
+        Map<Producto,Double> productos = this.obtenerConsumos(mes);
+        double total = 0;
         
-        Iterator<Integer> iterador = productos.values().iterator();
+        Iterator<Double> iterador = productos.values().iterator();
         
         while(iterador.hasNext()){
             total+=iterador.next().intValue();

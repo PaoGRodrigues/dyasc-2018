@@ -11,6 +11,9 @@ public class LibreriaTest {
     
     public LibreriaTest(){
         this.libreria = new Libreria();
+        CuentaCorriente nuevaCuenta = new CuentaCorriente(5566);
+        Cliente nuevoCliente = new Cliente("Pablo", "Los totora 999", nuevaCuenta);
+        libreria.agregarRegistroCliente(0, nuevoCliente);
     }
     
     @Test
@@ -32,6 +35,17 @@ public class LibreriaTest {
         Producto unLibro = new Libro(100);
         unCliente.registrarCompra("Septiembre",unLibro);
         
-        Assert.assertEquals(unCliente.obtenerConsumoMensual("Septiembre"), 100);
+        Assert.assertEquals(unCliente.obtenerConsumoMensual("Septiembre"), 100.0);
+    }
+    
+    @SuppressWarnings("deprecation")
+    @Test
+    public void elClienteCompraUnArticuloDeLibreriaYElPrecioEsConIVA(){
+        
+        Cliente comprador = libreria.obtenerCliente(0);
+        Producto producto = new ArticuloDeLibreria(1000);
+        comprador.registrarCompra("Octubre", producto);
+        
+        Assert.assertEquals(comprador.obtenerConsumoMensual("Octubre"), 1210.0);
     }
 }

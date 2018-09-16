@@ -40,7 +40,7 @@ public class Cliente {
         this.cuenta.agregarCompra(mes, unProducto, unProducto.obtenerPrecio());
     }
     
-    public int obtenerConsumoMensual(String mes){
+    public double obtenerConsumoMensual(String mes){
         return this.cuenta.obtenerTotalMes(mes);
     }
 }

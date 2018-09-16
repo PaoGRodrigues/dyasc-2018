@@ -7,7 +7,7 @@ public class Libro extends Producto {
     }
 
     @Override
-    public int obtenerPrecio() {
+    public double obtenerPrecio() {
         return this.precio;
     }
 

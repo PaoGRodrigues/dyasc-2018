@@ -2,10 +2,10 @@ package libreria;
 
 public abstract class Producto {
     
-    protected int precio;
+    protected double precio;
     public Producto(int precio){
         this.precio = precio;
     }
     
-    public abstract int obtenerPrecio();
+    public abstract double obtenerPrecio();
 }
