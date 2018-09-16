@@ -51,4 +51,13 @@ public class LibreriaTest {
         
         Assert.assertEquals(comprador.obtenerConsumoMensual("Octubre"), 1210.0);
     }
+    
+    @Test
+    public void clienteCompraPeriodicoYSuPerioricidadEsDeDosVecesPorMesSiendoSuPrecioElDobleQueElPrecioPorUnoSolo(){
+        Cliente comprador = libreria.obtenerCliente(0);
+        Producto producto = new Periodico(45, 2);
+        comprador.registrarCompra("Marzo", producto);
+        
+        Assert.assertEquals(comprador.obtenerConsumoMensual("Marzo"), 90.0);
+    }
 }
