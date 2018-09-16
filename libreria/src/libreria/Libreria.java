@@ -11,10 +11,11 @@ public class Libreria {
         this.clientes = new HashMap<Integer,Cliente>();
     }
 
-    public void agregarRegistroCliente(Cliente unCliente) {
-        
+    public void agregarRegistroCliente(int idCliente,Cliente unCliente) {
+        this.clientes.put(idCliente, unCliente);
     }
     
-    
-    
+    public Cliente obtenerCliente(int id){
+        return this.clientes.get(id);
+    }
 }

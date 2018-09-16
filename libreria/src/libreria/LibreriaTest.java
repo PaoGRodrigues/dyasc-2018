@@ -4,20 +4,29 @@ import org.junit.Test;
 
 public class LibreriaTest {
 
-    @Test
-    public void agregarRegistroClienteALaLibreria(){
-        
-        Libreria libreria = new Libreria();
-        
-        CuentaCorriente cuenta = new CuentaCorriente(3355);
-        Cliente unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
-        libreria.agregarRegistroCliente(unCliente);
+    Libreria libreria;
+    Cliente unCliente;
+    
+    public LibreriaTest(){
+        this.libreria = new Libreria();
     }
     
     @Test
-    public void agregarCuentaCorrienteACliente(){
-        //Asumo que no todos los clientes tienen cuenta corriente
+    public void agregarRegistroClienteALaLibreria(){
         
+        CuentaCorriente cuenta = new CuentaCorriente(3355);
+        this.unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
+        libreria.agregarRegistroCliente(1,unCliente);
+    }
+    
+    @Test
+    public void elClienteCompraUnLibroYSeAgregaALaCuentaCorriente(){
         
+        CuentaCorriente cuenta = new CuentaCorriente(3355);
+        this.unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
+        libreria.agregarRegistroCliente(1,unCliente);
+        
+        Producto unLibro = new Libro();
+        unCliente.registrarCompra("Septiembre",unLibro);
     }
 }
