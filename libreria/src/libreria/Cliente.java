@@ -39,5 +39,8 @@ public class Cliente {
     public void registrarCompra(String mes,Producto unProducto) {
         this.cuenta.agregarCompra(mes, unProducto, unProducto.obtenerPrecio());
     }
-
+    
+    public int obtenerConsumoMensual(String mes){
+        return this.cuenta.obtenerTotalMes(mes);
+    }
 }

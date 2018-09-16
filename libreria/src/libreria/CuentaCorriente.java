@@ -1,6 +1,8 @@
 package libreria;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class CuentaCorriente {
@@ -27,10 +29,26 @@ public class CuentaCorriente {
     }
     
     public void agregarCompra(String mes,Producto unProducto, int precio) {
-        if(this.consumos.containsKey(mes)){
-            this.consumos.get(mes).put(unProducto, precio);
+        if(!this.consumos.containsKey(mes)){
+            this.agregarNuevoMes(mes);
         }
+        this.consumos.get(mes).put(unProducto, precio);
     }
     
+    public Map<Producto,Integer> obtenerConsumos(String mes){
+        return this.consumos.get(mes);
+    }
     
+    public int obtenerTotalMes(String mes){
+        Map<Producto,Integer> productos = this.obtenerConsumos(mes);
+        int total = 0;
+        
+        Iterator<Integer> iterador = productos.values().iterator();
+        
+        while(iterador.hasNext()){
+            total+=iterador.next().intValue();
+        }
+        
+        return total;
+    }
 }

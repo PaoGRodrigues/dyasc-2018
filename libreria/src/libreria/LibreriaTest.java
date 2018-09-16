@@ -2,6 +2,8 @@ package libreria;
 
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class LibreriaTest {
 
     Libreria libreria;
@@ -19,6 +21,7 @@ public class LibreriaTest {
         libreria.agregarRegistroCliente(1,unCliente);
     }
     
+    @SuppressWarnings("deprecation")
     @Test
     public void elClienteCompraUnLibroYSeAgregaALaCuentaCorriente(){
         
@@ -26,7 +29,9 @@ public class LibreriaTest {
         this.unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
         libreria.agregarRegistroCliente(1,unCliente);
         
-        Producto unLibro = new Libro();
+        Producto unLibro = new Libro(100);
         unCliente.registrarCompra("Septiembre",unLibro);
+        
+        Assert.assertEquals(unCliente.obtenerConsumoMensual("Septiembre"), 100);
     }
 }
