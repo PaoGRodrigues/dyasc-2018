@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class LibreriaTest {
 
     Libreria libreria;
@@ -12,16 +13,18 @@ public class LibreriaTest {
     public LibreriaTest(){
         this.libreria = new Libreria();
         CuentaCorriente nuevaCuenta = new CuentaCorriente(5566);
-        Cliente nuevoCliente = new Cliente("Pablo", "Los totora 999", nuevaCuenta);
-        libreria.agregarRegistroCliente(0, nuevoCliente);
+        Cliente nuevoCliente = new Cliente(0,"Pablo", "Los totora 999", nuevaCuenta);
+        libreria.agregarRegistroCliente(nuevoCliente);
     }
     
     @Test
     public void agregarRegistroClienteALaLibreria(){
         
         CuentaCorriente cuenta = new CuentaCorriente(3355);
-        this.unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
-        libreria.agregarRegistroCliente(1,unCliente);
+        this.unCliente = new Cliente(1,"Pedro", "Los corrales 225", cuenta);
+        libreria.agregarRegistroCliente(unCliente);
+        
+        Assert.assertFalse(libreria.clientes.isEmpty());
     }
     
     @SuppressWarnings("deprecation")
@@ -29,8 +32,8 @@ public class LibreriaTest {
     public void elClienteCompraUnLibroYSeAgregaALaCuentaCorriente(){
         
         CuentaCorriente cuenta = new CuentaCorriente(3355);
-        this.unCliente = new Cliente("Pedro", "Los corrales 225", cuenta);
-        libreria.agregarRegistroCliente(1,unCliente);
+        this.unCliente = new Cliente(1,"Pedro", "Los corrales 225", cuenta);
+        libreria.agregarRegistroCliente(unCliente);
         
         Producto unLibro = new Libro(100);
         unCliente.registrarCompra("Septiembre",unLibro);

@@ -2,16 +2,22 @@ package libreria;
 
 public class Cliente {
     
+    private int idCliente;
     private String nombre;
     private String direccion;
     private CuentaCorriente cuenta;
     
-    public Cliente(String nombre, String direccion, CuentaCorriente unaCuenta){
+    public Cliente(int id, String nombre, String direccion, CuentaCorriente unaCuenta){
+        this.idCliente = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.cuenta = unaCuenta;
     }
 
+    public int getId() {
+        return this.idCliente;
+    }
+    
     public String getNombre() {
         return nombre;
     }

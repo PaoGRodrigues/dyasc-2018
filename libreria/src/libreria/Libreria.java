@@ -1,21 +1,28 @@
 package libreria;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Libreria {
     
-    Map<Integer,Cliente> clientes;
+    List<Cliente> clientes;
     
     public Libreria(){
-        this.clientes = new HashMap<Integer,Cliente>();
+        this.clientes = new LinkedList<Cliente>();
     }
 
-    public void agregarRegistroCliente(int idCliente,Cliente unCliente) {
-        this.clientes.put(idCliente, unCliente);
+    public void agregarRegistroCliente(Cliente unCliente) {
+        this.clientes.add(unCliente);
     }
     
     public Cliente obtenerCliente(int id){
-        return this.clientes.get(id);
+
+        Cliente clienteBuscado = null;
+        for(int i=0;i<clientes.size();i++){
+            if(this.clientes.get(i).getId()==id){
+                clienteBuscado = this.clientes.get(i);
+            }
+        }
+        return clienteBuscado;
     }
 }
