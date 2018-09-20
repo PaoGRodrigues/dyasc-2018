@@ -11,4 +11,12 @@ public class Libro extends Producto {
         return this.precio;
     }
 
+    @Override
+    public String obtenerTipoProducto() {
+        return "Libro";
+    }
+
+    @Override
+    public void establecerPrecio() {}
+
 }

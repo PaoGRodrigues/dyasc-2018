@@ -6,6 +6,7 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private CuentaCorriente cuenta;
+    private Periodo suscripto;
     
     public Cliente(int id, String nombre, String direccion, CuentaCorriente unaCuenta){
         this.idCliente = id;
@@ -43,10 +44,22 @@ public class Cliente {
     }
 
     public void registrarCompra(String mes,Producto unProducto) {
+        if(this.suscripto == Periodo.ANUAL && unProducto.obtenerTipoProducto().equals("Periodico")){
+            Periodico periodico;
+            periodico = (Periodico) unProducto;
+            periodico.establecerPrecioSuscripto();   
+        }else{
+            unProducto.establecerPrecio();
+        }
+        
         this.cuenta.agregarCompra(mes, unProducto, unProducto.obtenerPrecio());
     }
     
     public double obtenerConsumoMensual(String mes){
         return this.cuenta.obtenerTotalMes(mes);
+    }
+
+    public void suscribir(Periodo periodo) {
+        this.suscripto = periodo;
     }
 }

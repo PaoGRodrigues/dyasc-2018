@@ -1,18 +1,19 @@
 package libreria;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class CuentaCorriente {
 
     private int numeroDeCuenta;
-    private Map<String,Map<Producto,Double>> consumos;
+    private Map<String,List<Producto>> consumos;
     
     public CuentaCorriente(int numeroDeCuenta){
         this.numeroDeCuenta = numeroDeCuenta;
-        this.consumos = new HashMap<String, Map<Producto,Double>>();
+        this.consumos = new HashMap<String, List<Producto>>();
     }
 
     public int getNumeroDeCuenta() {
@@ -24,7 +25,7 @@ public class CuentaCorriente {
     }
 
     public void agregarNuevoMes(String mes){
-        Map<Producto,Double> nuevoMes = new HashMap<Producto, Double>();
+        List<Producto> nuevoMes = new LinkedList<Producto>();
         this.consumos.put(mes, nuevoMes);
     }
     
@@ -32,21 +33,21 @@ public class CuentaCorriente {
         if(!this.consumos.containsKey(mes)){
             this.agregarNuevoMes(mes);
         }
-        this.consumos.get(mes).put(unProducto, precio);
+        this.consumos.get(mes).add(unProducto);
     }
     
-    public Map<Producto,Double> obtenerConsumos(String mes){
+    public List<Producto> obtenerListaProductos(String mes){
         return this.consumos.get(mes);
     }
     
     public double obtenerTotalMes(String mes){
-        Map<Producto,Double> productos = this.obtenerConsumos(mes);
+        List<Producto> productos = this.obtenerListaProductos(mes);
         double total = 0;
         
-        Iterator<Double> iterador = productos.values().iterator();
+        Iterator<Producto> iterador = productos.iterator();
         
         while(iterador.hasNext()){
-            total+=iterador.next().intValue();
+            total+=iterador.next().obtenerPrecio();
         }
         
         return total;

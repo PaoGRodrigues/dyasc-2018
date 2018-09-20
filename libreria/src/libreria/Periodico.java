@@ -1,6 +1,6 @@
 package libreria;
 
-public class Periodico extends Producto {
+public class Periodico extends Producto implements Suscripcion{
 
     private int periodicidad;
     
@@ -11,7 +11,22 @@ public class Periodico extends Producto {
 
     @Override
     public double obtenerPrecio() {
-        return (this.precio*this.periodicidad);
+        return this.precio;
     }
 
+    @Override
+    public double establecerPrecioSuscripto() {
+        this.precio = ((this.precio*0.8)*this.periodicidad);
+        return this.precio;
+    }
+
+    @Override
+    public String obtenerTipoProducto() {
+        return "Periodico";
+    }
+
+    @Override
+    public void establecerPrecio() {
+        this.precio = (this.precio*this.periodicidad);
+    }
 }

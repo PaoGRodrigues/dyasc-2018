@@ -8,4 +8,6 @@ public abstract class Producto {
     }
     
     public abstract double obtenerPrecio();
+    public abstract void establecerPrecio();
+    public abstract String obtenerTipoProducto();
 }

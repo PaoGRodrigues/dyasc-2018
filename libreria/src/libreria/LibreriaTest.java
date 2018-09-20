@@ -38,7 +38,7 @@ public class LibreriaTest {
         Producto unLibro = new Libro(100);
         unCliente.registrarCompra("Septiembre",unLibro);
         
-        Assert.assertEquals(unCliente.obtenerConsumoMensual("Septiembre"), 100.0);
+        Assert.assertEquals(100.0, unCliente.obtenerConsumoMensual("Septiembre"));
     }
     
     @SuppressWarnings("deprecation")
@@ -49,7 +49,7 @@ public class LibreriaTest {
         Producto producto = new ArticuloDeLibreria(1000);
         comprador.registrarCompra("Octubre", producto);
         
-        Assert.assertEquals(comprador.obtenerConsumoMensual("Octubre"), 1210.0);
+        Assert.assertEquals(1210.0,comprador.obtenerConsumoMensual("Octubre"));
     }
     
     @Test
@@ -58,6 +58,16 @@ public class LibreriaTest {
         Producto producto = new Periodico(45, 2);
         comprador.registrarCompra("Marzo", producto);
         
-        Assert.assertEquals(comprador.obtenerConsumoMensual("Marzo"), 90.0);
+        Assert.assertEquals(90.0,comprador.obtenerConsumoMensual("Marzo"));
+    }
+    
+    @Test
+    public void clienteCompraPeriodicoYTieneSuscripcion(){
+        Cliente comprador = libreria.obtenerCliente(0);
+        Producto periodico = new Periodico(45,2);
+        comprador.suscribir(Periodo.ANUAL);
+        comprador.registrarCompra("Agosto",periodico);
+        
+        Assert.assertEquals(72.0,comprador.obtenerConsumoMensual("Agosto"));
     }
 }

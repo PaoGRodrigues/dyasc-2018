@@ -8,8 +8,17 @@ public class ArticuloDeLibreria extends Producto {
     
     @Override
     public double obtenerPrecio() {
+        return this.precio;
+    }
 
-        return (this.precio + (this.precio * 0.21));
+    @Override
+    public String obtenerTipoProducto() {
+        return "ArticuloDeLibreria";
+    }
+
+    @Override
+    public void establecerPrecio() {
+        this.precio = (this.precio + (this.precio * 0.21));
     }
 
 }
