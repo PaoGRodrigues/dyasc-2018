@@ -27,7 +27,6 @@ public class LibreriaTest {
         Assert.assertFalse(libreria.clientes.isEmpty());
     }
     
-    @SuppressWarnings("deprecation")
     @Test
     public void elClienteCompraUnLibroYSeAgregaALaCuentaCorriente(){
         
@@ -41,7 +40,6 @@ public class LibreriaTest {
         Assert.assertEquals(100.0, unCliente.obtenerConsumoMensual("Septiembre"));
     }
     
-    @SuppressWarnings("deprecation")
     @Test
     public void elClienteCompraUnArticuloDeLibreriaYElPrecioEsConIVA(){
         
@@ -69,5 +67,15 @@ public class LibreriaTest {
         comprador.registrarCompra("Agosto",periodico);
         
         Assert.assertEquals(72.0,comprador.obtenerConsumoMensual("Agosto"));
+    }
+    
+    @Test
+    public void clienteCompraLibroYEstaSuscripto(){
+        Cliente comprador = libreria.obtenerCliente(0);
+        Producto libro = new Libro(45);
+        comprador.suscribir(Periodo.ANUAL);
+        comprador.registrarCompra("Agosto",libro);
+        
+        Assert.assertEquals(45.0,comprador.obtenerConsumoMensual("Agosto"));
     }
 }
