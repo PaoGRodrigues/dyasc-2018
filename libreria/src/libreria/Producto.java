@@ -3,7 +3,7 @@ package libreria;
 public abstract class Producto {
     
     protected double precio;
-    public Producto(int precio){
+    public Producto(double precio){
         this.precio = precio;
     }
     

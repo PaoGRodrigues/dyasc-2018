@@ -2,7 +2,7 @@ package libreria;
 
 public class Libro extends Producto {
 
-    public Libro(int precio) {
+    public Libro(double precio) {
         super(precio);
     }
 

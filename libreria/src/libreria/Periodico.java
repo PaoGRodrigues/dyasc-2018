@@ -4,7 +4,7 @@ public class Periodico extends Producto implements Suscripcion{
 
     private int periodicidad;
     
-    public Periodico(int precio, int periodicidad) {
+    public Periodico(double precio, int periodicidad) {
         super(precio);
         this.periodicidad = periodicidad;
     }
