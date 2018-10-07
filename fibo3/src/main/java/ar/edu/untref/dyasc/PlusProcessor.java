@@ -2,10 +2,10 @@ package ar.edu.untref.dyasc;
 
 public class PlusProcessor {
 
-    public int plusSerie(int[] serie){
+    public int plusSeries(int[] series){
         int result = 0;
-        for(int i=0; i<serie.length; i++){
-            result+=serie[i];
+        for(int i=0; i<series.length; i++){
+            result+=series[i];
         }
         return result;
     }

@@ -8,90 +8,85 @@ import java.util.Map;
 public class Printer {
 
     private Map<String, Runnable> options;
-    private FiboCalculator fibo;
+    private FibonacciCalculator fibo;
     private int[] serie;
-    private PrintStream outputFile=null;
-    
-    public Printer(FiboCalculator fibo, int[] serie){
+    private String file;
+    private PrintStream output=null;
+
+    public Printer(FibonacciCalculator fibo, int[] serie, String file){
         this.fibo = fibo;
         this.options = new HashMap<String,Runnable>();
-        completeKeys();
         this.serie = serie;
+        this.file = file;
     }
-    
-    /*Completes the keys only (They are known).*/
-    private void completeKeys(){
-        this.options.put("vd", null);
-        this.options.put("hi", null);
-        this.options.put("vi", null);
-        this.options.put("hd", null);
-    }
-    
+
     /*Completes the options' value with the output on them.*/
-    private void completeOptions(PrintStream output){
+    private void loadOptionsMap(PrintStream output){
         this.options.put("vd", ()->this.verticalDirecta(output));
         this.options.put("hi", ()->this.horizontalInversa(output));
         this.options.put("vi", ()->this.verticalInversa(output));
         this.options.put("hd", ()->this.orientacionDefault(output));
     }
-    
+
     private void orientacionDefault(PrintStream output){
         for(int i=0; i<=this.serie.length-1; i++){
-           output.print(this.serie[i] + " ");
+            output.print(this.serie[i] + " ");
         }
         output.println();
     }
-    
+
     private void verticalDirecta(PrintStream output){
         output.println();
         for (int i=0; i<=this.serie.length-1; i++) {
             output.println(this.serie[i] + " ");
         }
     }
-    
+
     private void horizontalInversa(PrintStream output){
         for(int i=this.serie.length-1; i>=0; i--){
             output.print(this.serie[i] + " ");
         }
         output.println();
     }
-    
+
     private void verticalInversa(PrintStream output){
         output.println();
         for (int i=this.serie.length-1; i>=0; i--) {
             output.println(this.serie[i] + " ");
         }
     }
-    
+
     private boolean isValidOption(String option){
         return this.options.containsKey(option);
     }
-    
-    /*Where do we print the output?*/
-    private void placePrinter(String file) throws FileNotFoundException{
-        if(file!=null){
-            this.outputFile = new PrintStream(file);
-            System.out.println("fibo<" + this.fibo.getNumber() + "> "+"guardado en "+file);
+
+    private PrintStream createPrinter() throws FileNotFoundException{
+        PrintStream printStream;
+        if(this.file!=null){
+            FilePrinter filePrinter = new FilePrinter(this.file);
+            printStream = filePrinter.createPrintStream(this.fibo.getNumber());
         }else{
-            this.outputFile = System.out;
+            ConsolePrinter consolePrinter = new ConsolePrinter();
+            printStream = consolePrinter.createConsolePrinter(this.fibo.getNumber());
         }
+        return printStream;
     }
-    
-    public void runCommand(String option, String file) throws FileNotFoundException{
-        if(option!=null){
-            if(isValidOption(option)){
-                placePrinter(file);
-                completeOptions(this.outputFile);
-                this.outputFile.print("fibo<" + this.fibo.getNumber() + ">: ");
-                this.options.get(option).run();
-            }else{
-                System.out.println("Opciones no válidas.");
-            }
+
+    private String checkNullOption(String option){
+        if(option==null){
+            option="hd";
+        }
+        return option;
+    }
+
+    public void print(String option) throws FileNotFoundException{
+        String newOption = checkNullOption(option);
+        this.output = this.createPrinter();
+        loadOptionsMap(this.output);
+        if(isValidOption(newOption)){
+            this.options.get(newOption).run();
         }else{
-            placePrinter(file);
-            completeOptions(this.outputFile);
-            this.outputFile.print("fibo<" + this.fibo.getNumber() + ">: ");
-            this.orientacionDefault(this.outputFile);
+            System.out.println("Opciones no válidas.");
         }
     }
 }

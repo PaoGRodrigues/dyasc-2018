@@ -1,14 +1,14 @@
 package ar.edu.untref.dyasc;
 
-public class FiboCalculator {
+public class FibonacciCalculator {
 
     private int number;
-    private int[] serie;
+    private int[] series;
     
-    public FiboCalculator(int number){
+    public FibonacciCalculator(int number){
         
         this.number = number;
-        this.serie = fibonacci(number);
+        this.series = fibonacci(number);
     }
     
     private static int[] fibonacci(int number){
@@ -22,8 +22,8 @@ public class FiboCalculator {
         return serie;
     }
     
-    public int[] getSerie(){
-        return this.serie;
+    public int[] getSeries(){
+        return this.series;
     }
     
     public int getNumber(){
