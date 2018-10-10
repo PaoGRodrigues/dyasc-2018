@@ -8,4 +8,6 @@ public class ConsolePrinter {
         System.out.print("fibo<" + number + ">: ");
         return System.out;
     }
+    
+    
 }
