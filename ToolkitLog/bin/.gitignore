@@ -1,3 +1,8 @@
 /Bitacora.class
 /Cliente.class
 /Ejemplo.class
+/Printer.class
+/Impresor.class
+/ImpresorConsola.class
+/ImpresorArchivo.class
+/ImpresorFactory.class
