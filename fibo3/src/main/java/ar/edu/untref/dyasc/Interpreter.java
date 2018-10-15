@@ -22,6 +22,7 @@ public class Interpreter {
             }
         }
         this.addParameter("number", this.arguments[this.arguments.length-1]);
+        
     }
     
     private void parseOption(String option){
@@ -34,7 +35,11 @@ public class Interpreter {
     }
     
     public String getParameter(String param){
-        return this.optionMap.get(param);
+        String value = this.optionMap.get(param);
+        if(value==null){
+            value = "";
+        } 
+        return value;
     }
     
     public int getNumber(){
@@ -43,5 +48,27 @@ public class Interpreter {
     
     public void addParameter(String param, String value){
         this.optionMap.put(param, value);
+    }
+    
+    public String getOrientation(){
+        String option = this.getParameter("o");
+        String orientation=""; 
+        if(option.contains("v")){
+            orientation = "v";
+        }else if(option.equals("") || option.contains("h") ){
+            orientation = "h";
+        }
+        return orientation;
+    }
+    
+    public String getOrder(){
+        String option = this.getParameter("o");
+        String order = "";
+        if(option.contains("i")){
+            order= "i";
+        }else if(option.contains("d") || option.equals("")){
+            order ="d";
+        }
+        return order;
     }
 }
