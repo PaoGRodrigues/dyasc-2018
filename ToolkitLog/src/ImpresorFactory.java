@@ -3,15 +3,21 @@ public class ImpresorFactory {
 
     public static Impresor crearImpresor(){
         
-        Impresor impresor;
+        ImpresorCompuesto impresor = new ImpresorCompuesto();
         
-        if(System.getProperty("bitacora.destino").equals("CONSOLA")){
-            impresor = new ImpresorConsola();
-        }else{
-            String archivo = System.getProperty("bitacora.destino");
-            impresor = new ImpresorArchivo(archivo);
+        String variable = System.getProperty("bitacora.destino");
+        
+        if(variable!=null){
+            String[] destinos = variable.split(",");
+        
+            for(String destino: destinos){
+                if(destino.equals("CONSOLA")){
+                    impresor.agregarImpresor(new ImpresorConsola());
+                }else{
+                    impresor.agregarImpresor(new ImpresorArchivo(destino));
+                }
+            }
         }
-        
         return impresor;
     }
 }
