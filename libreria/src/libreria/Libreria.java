@@ -25,4 +25,12 @@ public class Libreria {
         }
         return clienteBuscado;
     }
+    
+    public double obtenerTotalACobrarMensual(String mes){
+        double totalMes=0.0;
+        for(Cliente cliente: this.clientes){
+            totalMes+= cliente.obtenerConsumoMensual(mes); 
+        }
+        return totalMes;
+    }
 }
