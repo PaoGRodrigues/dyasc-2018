@@ -9,10 +9,6 @@ public class Tablero {
         this.crearTablero(tamano);
     }
 
-    public void ubicarBote(String fila, String columna) {
-        
-    }
-
     private void crearTablero(int tamano){
         this.casilleros = this.crearFilas(tamano);
     }
@@ -30,7 +26,7 @@ public class Tablero {
         Map<String, Casillero> columnas = new HashMap<String, Casillero>();
         Casillero unCasillero;
         for(int i=0; i<tamano;i++){
-            unCasillero = new Casillero();
+            unCasillero = new CasilleroAgua();
             columnas.put(alfabeto.substring(i, i+1) , unCasillero);
         }
         return columnas;
