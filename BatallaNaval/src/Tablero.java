@@ -26,13 +26,19 @@ public class Tablero {
         Map<String, Casillero> columnas = new HashMap<String, Casillero>();
         Casillero unCasillero;
         for(int i=0; i<tamano;i++){
-            unCasillero = new CasilleroAgua();
+            unCasillero = new CasilleroAgua(Estado.AGUA);
             columnas.put(alfabeto.substring(i, i+1) , unCasillero);
         }
         return columnas;
     }
     
-    public Casillero getCasillero(String fila, String columna) {
+    public Casillero obtenerCasillero(String fila, String columna) {
         return this.casilleros.get(fila).get(columna);
+    }
+
+    public void agregarBote(String fila, String columna) {
+        Casillero unBote = new CasilleroBote(Estado.VIVO);
+        Map<String, Casillero> filaBuscada = this.casilleros.get(fila);
+        filaBuscada.replace(columna, unBote);
     }
 }
