@@ -31,8 +31,9 @@ public class Tablero {
     
     public void agregarBote(String fila, String columna) {
         Casillero unBote = new CasilleroBote(Estado.VIVO, fila, columna);
-        Map<String, Casillero> filaBuscada = this.casilleros.get(fila);
-        filaBuscada.replace(columna, unBote);
+        Casillero elCasillero = this.obtenerCasillero(fila,columna);
+        this.casilleros.remove(elCasillero);
+        this.casilleros.add(unBote);
     }
     /*
     public void agregarCrucero(String fila, String columna, String direccion) {
