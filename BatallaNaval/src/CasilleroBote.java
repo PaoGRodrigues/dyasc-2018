@@ -1,8 +1,8 @@
 
 public class CasilleroBote extends Casillero {
 
-    public CasilleroBote(Estado unEstado) {
-        super(unEstado);
+    public CasilleroBote(Estado unEstado, String fila, String columna) {
+        super(unEstado, fila, columna);
     }
 
     @Override
@@ -11,6 +11,4 @@ public class CasilleroBote extends Casillero {
             this.estado = Estado.HUNDIDO;
         }
     }
-
-    
 }

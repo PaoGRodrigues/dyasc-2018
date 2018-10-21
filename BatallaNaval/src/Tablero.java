@@ -1,44 +1,43 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Tablero {
 
-    Map<String, Map<String, Casillero>> casilleros;
+    List<Casillero> casilleros;
     
     public Tablero(int tamano){
+        this.casilleros = new LinkedList<Casillero>();
         this.crearTablero(tamano);
     }
 
     private void crearTablero(int tamano){
-        this.casilleros = this.crearFilas(tamano);
-    }
-    
-    private Map<String, Map<String, Casillero>> crearFilas(int tamano){
-        Map<String, Map<String, Casillero>> filas = new HashMap<String, Map<String, Casillero>>();
-        for(int i = 1; i<=tamano; i++){
-            filas.put(Integer.toString(i), this.crearColumnas(tamano));
-        }
-        return filas;
-    }
-    
-    private Map<String, Casillero> crearColumnas(int tamano){
         String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Map<String, Casillero> columnas = new HashMap<String, Casillero>();
-        Casillero unCasillero;
-        for(int i=0; i<tamano;i++){
-            unCasillero = new CasilleroAgua(Estado.AGUA);
-            columnas.put(alfabeto.substring(i, i+1) , unCasillero);
+        Casillero nuevoCasillero;
+        for(int i = 0; i<tamano; i++){
+            for(int j= 0; j<tamano; j++){
+                nuevoCasillero = new CasilleroAgua(Estado.AGUA, Integer.toString(i+1),alfabeto.substring(j, j+1));
+                this.casilleros.add(nuevoCasillero);
+            }
         }
-        return columnas;
     }
     
     public Casillero obtenerCasillero(String fila, String columna) {
-        return this.casilleros.get(fila).get(columna);
+        List<Casillero> listaCasilleros = this.casilleros.stream().filter(casillero -> casillero.obtenerFila().equals(fila) && 
+                casillero.obtenerColumna().equals(columna)).collect(Collectors.toList());
+        return listaCasilleros.get(0);
     }
-
+    
+    
     public void agregarBote(String fila, String columna) {
-        Casillero unBote = new CasilleroBote(Estado.VIVO);
+        Casillero unBote = new CasilleroBote(Estado.VIVO, fila, columna);
         Map<String, Casillero> filaBuscada = this.casilleros.get(fila);
         filaBuscada.replace(columna, unBote);
     }
+    /*
+    public void agregarCrucero(String fila, String columna, String direccion) {
+        Casillero unCrucero = new Crucero(Estado.VIVO, fila, columna, direccion);
+        Map<String, Casillero> filaBuscada = this.casilleros.get(fila);
+        filaBuscada.replace(columna, unCrucero);
+    }*/
 }
