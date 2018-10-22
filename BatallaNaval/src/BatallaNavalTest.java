@@ -25,10 +25,10 @@ public class BatallaNavalTest {
         Assert.assertTrue(this.tablero.obtenerCasillero("1", "A").obtenerEstado().equals(Estado.VIVO));
         Assert.assertTrue(this.tablero.obtenerCasillero("3", "F").obtenerEstado().equals(Estado.AGUA));
     }
-    /*
+    
     @Test
     public void seAgregaUnCrucero(){
         this.tablero.agregarCrucero("2","B","derecha");
         Assert.assertEquals(Estado.VIVO, this.tablero.obtenerCasillero("2", "C").obtenerEstado());
-    }*/
+    }
 }

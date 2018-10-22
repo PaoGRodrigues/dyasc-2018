@@ -8,6 +8,7 @@ public class Crucero extends Casillero {
     public Crucero(Estado unEstado, String fila, String columna, String direccion) {
         super(unEstado, fila, columna);
         this.casilleros = new ArrayList<CasilleroBote>();
+        this.ubicarCrucero(direccion);
     }
 
     @Override
@@ -19,16 +20,12 @@ public class Crucero extends Casillero {
         }
     }
     
-    public void ubicarCrucero(){
-        this.casilleros.add(new CasilleroBote(this.estado, fila, columna));
-        String siguienteColumna = obtenerSiguienteLetra(columna);
-        this.casilleros.add(new CasilleroBote(this.estado, fila, siguienteColumna));
-        this.casilleros.add(new CasilleroBote(this.estado, fila, obtenerSiguienteLetra(siguienteColumna)));
+    public void ubicarCrucero(String direccion){
+        Ubicador ubicador = UbicadorFactory.crearUbicador(direccion);
+        this.casilleros = ubicador.ubicar(this.fila, this.columna);
     }
     
-    private String obtenerSiguienteLetra(String letra){
-        int charValue = letra.charAt(0);
-        String next = String.valueOf((char)(charValue+1));
-        return next;
+    public List<CasilleroBote> obtenerCrucero(){
+        return this.casilleros;
     }
 }

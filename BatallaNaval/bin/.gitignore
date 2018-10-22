@@ -5,3 +5,10 @@
 /Crucero.class
 /Estado.class
 /Tablero.class
+/Ubicador.class
+/UbicadorDerecha.class
+/UbicadorIzquieda.class
+/UbicadorIzquierda.class
+/UbicadorArriba.class
+/UbicadorAbajo.class
+/UbicadorFactory.class

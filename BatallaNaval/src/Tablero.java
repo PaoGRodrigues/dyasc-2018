@@ -35,10 +35,14 @@ public class Tablero {
         this.casilleros.remove(elCasillero);
         this.casilleros.add(unBote);
     }
-    /*
+    
     public void agregarCrucero(String fila, String columna, String direccion) {
-        Casillero unCrucero = new Crucero(Estado.VIVO, fila, columna, direccion);
-        Map<String, Casillero> filaBuscada = this.casilleros.get(fila);
-        filaBuscada.replace(columna, unCrucero);
-    }*/
+        Crucero unCrucero = new Crucero(Estado.VIVO, fila, columna, direccion);
+        List<CasilleroBote> casillerosCrucero = unCrucero.obtenerCrucero();
+        for(Casillero casillero: casillerosCrucero){
+            Casillero unCasillero = this.obtenerCasillero(casillero.obtenerFila(), casillero.obtenerColumna());
+            this.casilleros.remove(unCasillero);
+        }
+        this.casilleros.addAll(casillerosCrucero);
+    }
 }
