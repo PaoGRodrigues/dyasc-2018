@@ -36,4 +36,26 @@ public class BatallaNavalTest {
     public void seAgregaBoteEnUnCasilleroInvalido(){
         this.tablero.agregarBote("9","Z");
     }
+    
+    @Test(expected = RuntimeException.class)
+    public void seAgregaCruceroHaciaLaDerechaConUnCasilleroInvalido(){
+        this.tablero.agregarCrucero("2","L", "derecha");
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void seAgregaCruceroHaciaAbajoConUnCasilleroInvalido(){
+        this.tablero.agregarCrucero("45","B", "abajo");
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void seAgregaCruceroHaciaArribaConUnCasilleroInvalido(){
+        this.tablero.agregarCrucero("2","B", "arriba");
+    }
+    
+    @Test
+    public void seAgregaCruceroHaciaArribaConUnCasilleroValido(){
+        this.tablero.agregarCrucero("3","B", "arriba");
+        this.tablero.agregarCrucero("8","B", "arriba");
+        this.tablero.agregarCrucero("8","H", "arriba");
+    }
 }
