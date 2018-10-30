@@ -31,4 +31,9 @@ public class BatallaNavalTest {
         this.tablero.agregarCrucero("2","B","derecha");
         Assert.assertEquals(Estado.VIVO, this.tablero.obtenerCasillero("2", "C").obtenerEstado());
     }
+    
+    @Test(expected = RuntimeException.class)
+    public void seAgregaBoteEnUnCasilleroInvalido(){
+        this.tablero.agregarBote("9","Z");
+    }
 }

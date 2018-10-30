@@ -1,8 +1,8 @@
 
 public class UbicadorFactory {
 
-    public static Ubicador crearUbicador(String direccion){
-        Ubicador ubicador;
+    public static UbicadorCrucero crearUbicador(String direccion){
+        UbicadorCrucero ubicador;
         if(direccion.equals("derecha")){
             ubicador = new UbicadorDerecha();
         }else if(direccion.equals("izquierda")){

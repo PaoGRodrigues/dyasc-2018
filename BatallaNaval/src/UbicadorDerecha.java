@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class UbicadorDerecha implements Ubicador{
+public class UbicadorDerecha implements UbicadorCrucero{
 
     @Override
     public List<CasilleroBote> ubicar(String fila, String columna) {

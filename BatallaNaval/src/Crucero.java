@@ -21,7 +21,7 @@ public class Crucero extends Casillero {
     }
     
     public void ubicarCrucero(String direccion){
-        Ubicador ubicador = UbicadorFactory.crearUbicador(direccion);
+        UbicadorCrucero ubicador = UbicadorFactory.crearUbicador(direccion);
         this.casilleros = ubicador.ubicar(this.fila, this.columna);
     }
     
