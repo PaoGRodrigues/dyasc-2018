@@ -7,7 +7,7 @@ public class CasilleroAgua extends Casillero {
     }
     
     @Override
-    public void cambiarEstado() {}
+    public void cambiarEstado(Estado nuevoEstado) {}
 
     
 }

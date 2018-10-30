@@ -5,11 +5,13 @@ import java.util.stream.Collectors;
 public class Tablero {
 
     private List<Casillero> casilleros;
+    private List<Crucero> cruceros;
     private int tamano;
 
     public Tablero(int tamano){
         this.tamano = tamano;
         this.casilleros = new LinkedList<Casillero>();
+        this.cruceros = new LinkedList<Crucero>();
         this.crearTablero(tamano);
     }
 
@@ -54,8 +56,27 @@ public class Tablero {
                 this.casilleros.remove(unCasillero);
             }
             this.casilleros.addAll(casillerosCrucero);
+            this.cruceros.add(unCrucero);
         }else{
             throw new RuntimeException("Ubicación no válida.");
         }
+    }
+    
+    public void recibirDisparo(String fila, String columna){
+        Casillero casillero = this.obtenerCasillero(fila, columna);
+        if(casilleroPerteneceCrucero(fila, columna)){
+            casillero.cambiarEstado(Estado.TOCADO);
+        }else if(casillero.obtenerEstado()==Estado.VIVO){
+            casillero.cambiarEstado(Estado.HUNDIDO);
+        }
+    }
+    
+    public boolean casilleroPerteneceCrucero(String fila, String columna){
+        for(Crucero crucero: this.cruceros){
+            if(crucero.perteneceAlCrucero(fila, columna)){
+                return true;
+            }
+        }
+        return false;
     }
 }

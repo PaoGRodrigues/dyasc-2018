@@ -58,4 +58,23 @@ public class BatallaNavalTest {
         this.tablero.agregarCrucero("8","B", "arriba");
         this.tablero.agregarCrucero("8","H", "arriba");
     }
+    
+    @Test
+    public void disparaAUnCasilleroBoteYLoHunde(){
+        this.tablero.agregarBote("1", "A");
+        this.tablero.recibirDisparo("1", "A");
+        Assert.assertEquals(Estado.HUNDIDO, this.tablero.obtenerCasillero("1", "A").obtenerEstado());
+    }
+    
+    @Test
+    public void disparaAUnCasilleroCruceroNoLoHunde(){
+        this.tablero.agregarCrucero("1", "A", "derecha");
+        this.tablero.recibirDisparo("1", "A");
+        this.tablero.recibirDisparo("1", "B");
+        this.tablero.recibirDisparo("1", "C");
+        
+        Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("1", "A").obtenerEstado());
+        Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("1", "B").obtenerEstado());
+        Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("1", "C").obtenerEstado());
+    }
 }

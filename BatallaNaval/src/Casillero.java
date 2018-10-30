@@ -23,5 +23,5 @@ public abstract class Casillero {
         return this.columna;
     }
     
-    public abstract void cambiarEstado();
+    public abstract void cambiarEstado(Estado nuevoEstado);
 }
