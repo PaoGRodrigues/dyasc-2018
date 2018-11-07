@@ -71,10 +71,32 @@ public class BatallaNavalTest {
         this.tablero.agregarCrucero("1", "A", "derecha");
         this.tablero.recibirDisparo("1", "A");
         this.tablero.recibirDisparo("1", "B");
-        this.tablero.recibirDisparo("1", "C");
         
         Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("1", "A").obtenerEstado());
         Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("1", "B").obtenerEstado());
-        Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("1", "C").obtenerEstado());
+    }
+    
+    @Test
+    public void disparaAUnCasilleroCruceroYHayVariosCruceros(){
+        this.tablero.agregarCrucero("1", "A", "derecha");
+        this.tablero.agregarCrucero("2", "A", "derecha");
+        this.tablero.agregarBote("3", "A");
+        
+        this.tablero.recibirDisparo("2", "B");
+        this.tablero.recibirDisparo("3", "A");
+        
+        Assert.assertEquals(Estado.TOCADO, this.tablero.obtenerCasillero("2", "B").obtenerEstado());
+        Assert.assertEquals(Estado.HUNDIDO, this.tablero.obtenerCasillero("3", "A").obtenerEstado());
+    }
+    
+    @Test
+    public void disparoUnCruceroYLoHundo(){
+        this.tablero.agregarCrucero("1", "A", "derecha");
+        
+        this.tablero.recibirDisparo("1", "A");
+        this.tablero.recibirDisparo("1", "B");
+        this.tablero.recibirDisparo("1", "C");
+        
+        Assert.assertEquals(Estado.HUNDIDO, this.tablero.obtenerCasillero("1", "B").obtenerEstado());
     }
 }

@@ -17,9 +17,7 @@ public class Crucero extends Casillero {
     @Override
     public void cambiarEstado(Estado nuevoEstado) {
         for(CasilleroBote casillero: casilleros){
-            if(casillero.obtenerEstado().equals(Estado.TOCADO)){
-                this.estado = nuevoEstado;
-            }
+            casillero.cambiarEstado(nuevoEstado);
         }
     }
     
@@ -43,6 +41,8 @@ public class Crucero extends Casillero {
         return false;
     }
     
-    public void recibirDisparo(String fila, String columna){
+    public boolean estaHundido(){
+        return (this.casilleros.stream().allMatch(casillero->casillero.obtenerEstado()==Estado.TOCADO));
     }
+    
 }

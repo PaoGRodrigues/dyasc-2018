@@ -66,17 +66,25 @@ public class Tablero {
         Casillero casillero = this.obtenerCasillero(fila, columna);
         if(casilleroPerteneceCrucero(fila, columna)){
             casillero.cambiarEstado(Estado.TOCADO);
+            Crucero elCrucero = cruceroDeCasillero(fila, columna);
+            if(elCrucero.estaHundido()){
+                elCrucero.cambiarEstado(Estado.HUNDIDO);
+            }
         }else if(casillero.obtenerEstado()==Estado.VIVO){
             casillero.cambiarEstado(Estado.HUNDIDO);
         }
     }
     
     public boolean casilleroPerteneceCrucero(String fila, String columna){
+        return cruceroDeCasillero(fila, columna)!=null;
+    }
+    
+    public Crucero cruceroDeCasillero(String fila, String columna){
         for(Crucero crucero: this.cruceros){
             if(crucero.perteneceAlCrucero(fila, columna)){
-                return true;
+                return crucero;
             }
         }
-        return false;
+        return null;
     }
 }

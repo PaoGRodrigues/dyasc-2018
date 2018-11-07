@@ -7,9 +7,10 @@ public class CasilleroBote extends Casillero{
 
     @Override
     public void cambiarEstado(Estado nuevoEstado) {
-        if(this.estado.equals(Estado.VIVO)){
-            this.estado = nuevoEstado;
-        }
+        this.estado = nuevoEstado;        
     }
    
+    public Estado obtenerEstado(){
+        return this.estado;
+    }
 }
